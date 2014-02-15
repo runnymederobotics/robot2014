@@ -1,4 +1,4 @@
-package edu.wpi.first.wpilibj.templates.subsystems;
+package templates.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
@@ -6,11 +6,11 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.templates.ArcadeDrive;
-import edu.wpi.first.wpilibj.templates.Constants;
-import edu.wpi.first.wpilibj.templates.RobotMap;
-import edu.wpi.first.wpilibj.templates.Storage;
-import edu.wpi.first.wpilibj.templates.commands.TeleopDriveCommand;
+import templates.ArcadeDrive;
+import templates.Constants;
+import templates.RobotMap;
+import templates.Storage;
+import templates.commands.TeleopDriveCommand;
 
 public class ChassisSubsystem extends Subsystem {
 

@@ -1,12 +1,12 @@
-package edu.wpi.first.wpilibj.templates.subsystems;
+package templates.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.templates.Constants;
-import edu.wpi.first.wpilibj.templates.RobotMap;
-import edu.wpi.first.wpilibj.templates.commands.CommandBase;
-import edu.wpi.first.wpilibj.templates.commands.PickupCommand;
+import templates.Constants;
+import templates.RobotMap;
+import templates.commands.CommandBase;
+import templates.commands.PickupCommand;
 
 public class PickupSubsystem extends Subsystem {
 

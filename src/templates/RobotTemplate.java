@@ -1,10 +1,10 @@
-package edu.wpi.first.wpilibj.templates;
+package templates;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.templates.commands.AutonomousCommandGroup;
-import edu.wpi.first.wpilibj.templates.commands.CommandBase;
+import templates.commands.AutonomousCommandGroup;
+import templates.commands.CommandBase;
 
 public class RobotTemplate extends IterativeRobot {
 

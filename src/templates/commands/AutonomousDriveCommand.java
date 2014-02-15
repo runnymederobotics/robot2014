@@ -1,6 +1,6 @@
-package edu.wpi.first.wpilibj.templates.commands;
+package templates.commands;
 
-import edu.wpi.first.wpilibj.templates.Constants;
+import templates.Constants;
 
 public class AutonomousDriveCommand extends CommandBase {
 

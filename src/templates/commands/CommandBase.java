@@ -1,10 +1,10 @@
-package edu.wpi.first.wpilibj.templates.commands;
+package templates.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.templates.OI;
-import edu.wpi.first.wpilibj.templates.subsystems.ChassisSubsystem;
-import edu.wpi.first.wpilibj.templates.subsystems.PickupSubsystem;
-import edu.wpi.first.wpilibj.templates.subsystems.ShooterSubsystem;
+import templates.OI;
+import templates.subsystems.ChassisSubsystem;
+import templates.subsystems.PickupSubsystem;
+import templates.subsystems.ShooterSubsystem;
 
 
 public abstract class CommandBase extends Command {
