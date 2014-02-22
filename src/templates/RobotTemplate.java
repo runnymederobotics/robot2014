@@ -4,18 +4,21 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import templates.commands.AutonomousCommandGroup;
+import templates.commands.OneBallCommandGroup;
 import templates.commands.CommandBase;
 
 public class RobotTemplate extends IterativeRobot {
 
     Compressor compressor = new Compressor(RobotMap.PRESSURE_SWITCH, RobotMap.COMPRESSOR_RELAY);
-    long lastPrintTime = 0;
     Solenoid testMakeSureToRemove = new Solenoid(6);
+    RobotServer robotServer = new RobotServer(8000);
+    long lastPrintTime = 0;
 
     public void robotInit() {
         compressor.start();
         CommandBase.init();
+        
+        robotServer.start();
     }
 
     public void disabledInit() {
@@ -24,7 +27,7 @@ public class RobotTemplate extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        Scheduler.getInstance().add(new AutonomousCommandGroup());
+        Scheduler.getInstance().add(new OneBallCommandGroup());
         compressor.start();
         CommandBase.enable();
     }

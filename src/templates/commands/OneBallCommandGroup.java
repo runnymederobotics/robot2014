@@ -1,21 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package templates.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- *
- * @author 1310
- */
-public class AutonomousCommandGroup extends CommandGroup {
+public class OneBallCommandGroup extends CommandGroup {
 
-    public AutonomousCommandGroup() {
+    public OneBallCommandGroup() {
         addParallel(new AutonomousParallelShooterCommand()); //Enable automatic winching
         addParallel(new AutonomousParallelPickupCommand()); //Allow pickup to control itself for "armed" state
-        addSequential(new AutonomousDriveCommand(72)); //Drive forward 72 inches
+        addSequential(new AutonomousDriveCommand(120)); //Drive forward
+        addSequential(new AutonomousDelayCommand(1000)); //Delay
         addSequential(new AutonomousShootCommand()); //Shoot, which stops the automatic winch command
         addParallel(new AutonomousParallelShooterCommand()); //Go back to automatic winching
     }

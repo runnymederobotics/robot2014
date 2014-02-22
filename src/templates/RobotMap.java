@@ -18,6 +18,7 @@ public class RobotMap {
     
     // Relay Ports
     public static final int COMPRESSOR_RELAY = 1;
+    public static final int POSSESION_LED_RELAY = 2;
     
     // Solenoid Ports
     public static final int SHIFTER = 1;

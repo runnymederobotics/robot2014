@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import templates.Constants;
-import templates.Pneumatic;
+import templates.Actuator;
 import templates.RobotMap;
 import templates.commands.CommandBase;
 import templates.commands.PickupCommand;
@@ -12,8 +12,12 @@ import templates.commands.PickupCommand;
 public class PickupSubsystem extends Subsystem {
 
     Victor vicPickup = new Victor(RobotMap.PICKUP_MOTOR);
-    Pneumatic pickupPiston = new Pneumatic(new DoubleSolenoid(RobotMap.PICKUP_ONE, RobotMap.PICKUP_TWO), false, false);
+    Actuator pickupPiston = new Actuator(new DoubleSolenoid(RobotMap.PICKUP_ONE, RobotMap.PICKUP_TWO), false, true);
     long lastRetractedTime = 0;
+
+    protected void initDefaultCommand() {
+        setDefaultCommand(new PickupCommand());
+    }
 
     public boolean pickupDown() {
         return pickupPiston.get();
@@ -37,20 +41,25 @@ public class PickupSubsystem extends Subsystem {
         }
     }
 
-    public void updateRoller(boolean runForward, boolean runReverse) {
+    public void updateRoller(boolean runForward, boolean runReverse, boolean dragBall) {
 
         long now = System.currentTimeMillis();
 
         double pickupSpeed = 0.0;
 
         //If the pickup has been out for less than Constants.PICKUP_DEPLOY_ROLLER_TIME
-        if (pickupDown() && now - lastRetractedTime < Constants.PICKUP_DEPLOY_ROLLER_TIME) {
+        
+        if (pickupDown() && now - lastRetractedTime < Constants.PICKUP_DEPLOY_ROLLER_START_TIME) {
+            pickupSpeed = -Constants.PICKUP_DEPLOY_SPEED;
+        } else if (pickupDown() && now - lastRetractedTime > Constants.PICKUP_DEPLOY_ROLLER_START_TIME && now - lastRetractedTime < Constants.PICKUP_DEPLOY_ROLLER_END_TIME) {
             pickupSpeed = Constants.PICKUP_DEPLOY_SPEED;
         } else if (runReverse) {
             pickupSpeed = -Constants.PICKUP_SPEED;
         } else if (runForward) {// && CommandBase.shooterSubsystem.getLimit()) {
             //You can't try to intake unless the limit switch is pressed
             pickupSpeed = Constants.PICKUP_SPEED;
+        } else if (dragBall) {
+            pickupSpeed = Constants.PICKUP_DRAG_SPEED;
         }
 
         vicPickup.set(pickupSpeed);
@@ -60,11 +69,7 @@ public class PickupSubsystem extends Subsystem {
         long now = System.currentTimeMillis();
 
         //Allow a shot if it's deployed and we've delayed long enough
-        return pickupDown() && now - lastRetractedTime >= Constants.PICKUP_MOTION_TIME;
-    }
-
-    protected void initDefaultCommand() {
-        setDefaultCommand(new PickupCommand());
+        return pickupDown() && now - lastRetractedTime > Constants.PICKUP_MOTION_TIME;
     }
 
     public void print() {

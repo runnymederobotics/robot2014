@@ -17,7 +17,7 @@ public class PickupCommand extends CommandBase {
         boolean requestReverse = oi.getPickupReverseButton();
 
         pickupSubsystem.updatePistonState(requestPickup || requestDeploy);
-        pickupSubsystem.updateRoller(requestRoll || requestPickup, requestReverse);
+        pickupSubsystem.updateRoller(requestRoll || requestPickup, requestReverse, false);
     }
 
     protected boolean isFinished() {

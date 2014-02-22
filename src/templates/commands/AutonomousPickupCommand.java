@@ -6,16 +6,17 @@ public class AutonomousPickupCommand extends CommandBase{
     
     public AutonomousPickupCommand(boolean state){
         requires(pickupSubsystem);
-        
         this.state = state;
     }
     
     protected void initialize() {
+        pickupSubsystem.updatePistonState(false);
     }
 
     protected void execute() {
         //Constantly update the state of the pickup in case we want to shoot (shooting will put us into "armed" state
         pickupSubsystem.updatePistonState(state);
+        pickupSubsystem.updateRoller(false, false, false);
     }
 
     protected boolean isFinished() {

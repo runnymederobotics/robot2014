@@ -5,6 +5,7 @@ import templates.OI;
 import templates.subsystems.ChassisSubsystem;
 import templates.subsystems.PickupSubsystem;
 import templates.subsystems.ShooterSubsystem;
+import templates.subsystems.SignalSubsystem;
 
 
 public abstract class CommandBase extends Command {
@@ -13,6 +14,7 @@ public abstract class CommandBase extends Command {
     public static ChassisSubsystem chassisSubsystem = new ChassisSubsystem();
     public static PickupSubsystem pickupSubsystem = new PickupSubsystem();
     public static ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+    public static SignalSubsystem signalSubsystem = new SignalSubsystem();
 
     public static void init() {
         oi = new OI();

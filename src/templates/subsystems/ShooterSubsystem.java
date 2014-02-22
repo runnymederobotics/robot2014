@@ -5,14 +5,14 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import templates.Constants;
-import templates.Pneumatic;
+import templates.Actuator;
 import templates.RobotMap;
 import templates.commands.CommandBase;
 import templates.commands.ShooterCommand;
 
 public class ShooterSubsystem extends Subsystem {
 
-    Pneumatic shooterPiston = new Pneumatic(new DoubleSolenoid(RobotMap.SHOOTER_ONE, RobotMap.SHOOTER_TWO), true, false);
+    Actuator shooterPiston = new Actuator(new DoubleSolenoid(RobotMap.SHOOTER_ONE, RobotMap.SHOOTER_TWO), true, false);
     Victor vicWinch = new Victor(RobotMap.WINCH_MOTOR);
     DigitalInput limitSwitch = new DigitalInput(RobotMap.LIMIT_SWITCH);
     boolean shooterArmed;

@@ -8,14 +8,14 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import templates.ArcadeDrive;
 import templates.Constants;
-import templates.Pneumatic;
+import templates.Actuator;
 import templates.RobotMap;
 import templates.Storage;
 import templates.commands.TeleopDriveCommand;
 
 public class ChassisSubsystem extends Subsystem {
 
-    Pneumatic shifter = new Pneumatic(new Solenoid(RobotMap.SHIFTER), false, false);
+    Actuator shifter = new Actuator(new Solenoid(RobotMap.SHIFTER), false, false);
     Encoder encLeft = new Encoder(RobotMap.ENC_LEFT_ONE, RobotMap.ENC_LEFT_TWO, true);
     Encoder encRight = new Encoder(RobotMap.ENC_RIGHT_ONE, RobotMap.ENC_RIGHT_TWO, false);
     Victor vicLeft = new Victor(RobotMap.LEFT_MOTOR);
@@ -41,19 +41,35 @@ public class ChassisSubsystem extends Subsystem {
     }
 
     public void enable() {
-        //pidLeft.enable();
-        //pidRight.enable();
+        //enablePID();
     }
 
     public void disable() {
-        pidLeft.disable();
-        pidRight.disable();
+        disablePID();
 
         pidLeft.setSetpoint(0);
         pidRight.setSetpoint(0);
 
         vicLeft.set(0.0);
         vicRight.set(0.0);
+    }
+
+    public void disablePID() {
+        if (pidLeft.isEnable()) {
+            pidLeft.disable();
+        }
+        if (pidRight.isEnable()) {
+            pidRight.disable();
+        }
+    }
+
+    public void enablePID() {
+        if (!pidLeft.isEnable()) {
+            pidLeft.enable();
+        }
+        if (!pidRight.isEnable()) {
+            pidRight.enable();
+        }
     }
 
     public void drive(double speed, double rotation) {
@@ -65,19 +81,20 @@ public class ChassisSubsystem extends Subsystem {
             rotation = 0.0;
         }
 
-        double leftSetpoint;
-        double rightSetpoint;
-
         arcadeDrive.drive(speed, -rotation);
 
-        leftSetpoint = leftStorage.get();// * Constants.MAX_ENCODER_COUNTS;
-        rightSetpoint = -rightStorage.get();// * Constants.MAX_ENCODER_COUNTS;
+        double leftSpeed = leftStorage.get();
+        double rightSpeed = -rightStorage.get();
 
-        vicLeft.set(leftSetpoint);
-        vicRight.set(rightSetpoint);
-
-        //pidLeft.setSetpoint(leftSetpoint);
-        //pidRight.setSetpoint(rightSetpoint);
+        if (!pidLeft.isEnable() && !pidRight.isEnable()) {
+            vicLeft.set(leftSpeed);
+            vicRight.set(rightSpeed);
+        } else if (pidLeft.isEnable() && pidRight.isEnable()) {
+            pidLeft.setSetpoint(leftSpeed * Constants.MAX_ENCODER_COUNTS);
+            pidRight.setSetpoint(rightSpeed * Constants.MAX_ENCODER_COUNTS);
+        } else {
+            disablePID();
+        }
     }
 
     public void shift(boolean state) {
@@ -94,7 +111,6 @@ public class ChassisSubsystem extends Subsystem {
         double encRightDistance = encRight.getDistance();
 
         return (encLeftDistance + encRightDistance) / 2;
-
     }
 
     public void reset() {

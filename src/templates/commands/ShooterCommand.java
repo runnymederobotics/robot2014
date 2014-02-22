@@ -16,8 +16,7 @@ public class ShooterCommand extends CommandBase {
     protected void execute() {
         toggleWinch.feed(oi.getWinchToggle());
         
-        shooterSubsystem.update(oi.getShooterFireButton(), toggleWinch.getValue());
-        System.out.println(toggleWinch.getValue());
+        shooterSubsystem.update(oi.getShooterFireButton(), toggleWinch.get());
     }
 
     public static boolean getLimit() {

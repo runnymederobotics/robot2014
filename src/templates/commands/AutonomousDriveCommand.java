@@ -14,6 +14,7 @@ public class AutonomousDriveCommand extends CommandBase {
 
     protected void initialize() {
         chassisSubsystem.reset();
+        chassisSubsystem.disablePID();
     }
 
     protected void execute() {
@@ -21,6 +22,9 @@ public class AutonomousDriveCommand extends CommandBase {
         if (encoderCounts < 0.0) {
             direction = -1;
         }
+        
+        chassisSubsystem.shift(false);
+        
         chassisSubsystem.drive(Constants.AUTONOMOUS_DRIVE_SPEED * direction, 0.0);
     }
 

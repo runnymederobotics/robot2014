@@ -32,7 +32,7 @@ public class Toggle {
         return toggleTime;
     }
     
-    public boolean getValue(){
+    public boolean get(){
         return state;
     }
     

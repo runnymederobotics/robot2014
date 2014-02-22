@@ -4,23 +4,25 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class OI {
 
-    public static class Driver {
+    public static final class Driver {
 
-        public final static Joystick joystick = new Joystick(1);
-        public final static int DRIVE_AXIS = 2;
-        public final static int ROTATION_AXIS = 3;
-        public final static int SHIFTER_BUTTON = 8;
-        public final static int PICKUP_BUTTON = 7;
+        public static final Joystick joystick = new Joystick(1);
+        public static final int DRIVE_AXIS = 2;
+        public static final int ROTATION_AXIS = 3;
+        public static final int SHIFTER_BUTTON = 8;
+        public static final int PICKUP_BUTTON = 7;
+        public static final int PID_TOGGLE = 9;
     }
 
-    public static class Operator {
+    public static final class Operator {
 
-        public final static Joystick joystick = new Joystick(2);
-        public final static int RUN_PICKUP_BUTTON = 7;
-        public final static int WINCH_TOGGLE = 2;
-        public final static int LOWER_PICKUP_BUTTON = 5;
-        public final static int SHOOTER_BUTTON = 6;
-        public final static int PICKUP_REVERSE_BUTTON = 3;
+        public static final Joystick joystick = new Joystick(2);
+        public static final int RUN_PICKUP_BUTTON = 7;
+        public static final int WINCH_TOGGLE = 2;
+        public static final int LOWER_PICKUP_BUTTON = 5;
+        public static final int SHOOTER_BUTTON = 6;
+        public static final int PICKUP_REVERSE_BUTTON = 3;
+        public static final int POSSESION_TOGGLE_BUTTON = 4;
     }
 
     public boolean getRunPickupButton() {
@@ -57,5 +59,13 @@ public class OI {
 
     public double getRotationAxis() {
         return Driver.joystick.getRawAxis(Driver.ROTATION_AXIS);
+    }
+
+    public boolean getPossesionToggle() {
+        return Operator.joystick.getRawButton(Operator.POSSESION_TOGGLE_BUTTON);
+    }
+    
+    public boolean getTogglePID() {
+        return Driver.joystick.getRawButton(Driver.PID_TOGGLE);
     }
 }

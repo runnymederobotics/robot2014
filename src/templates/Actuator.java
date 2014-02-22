@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Solenoid;
 
-public class Pneumatic {
+public class Actuator {
 
     private DoubleSolenoid doubleSolenoid;
     private Solenoid solenoid;
@@ -12,20 +12,20 @@ public class Pneumatic {
     private boolean currentState;
     private boolean inverted;
 
-    public Pneumatic(DoubleSolenoid doubleSolenoid, boolean defaultState, boolean inverted) {
+    public Actuator(DoubleSolenoid doubleSolenoid, boolean defaultState, boolean inverted) {
         this.doubleSolenoid = doubleSolenoid;
         this.currentState = defaultState;
         this.inverted = inverted;
 
     }
 
-    public Pneumatic(Solenoid solenoid, boolean defaultState, boolean inverted) {
+    public Actuator(Solenoid solenoid, boolean defaultState, boolean inverted) {
         this.solenoid = solenoid;
         this.currentState = defaultState;
         this.inverted = inverted;
     }
 
-    public Pneumatic(Relay relay, boolean defaultState, boolean inverted) {
+    public Actuator(Relay relay, boolean defaultState, boolean inverted) {
         this.relay = relay;
         this.currentState = defaultState;
         this.inverted = inverted;
