@@ -5,13 +5,14 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import templates.Constants;
+import templates.Pneumatic;
 import templates.RobotMap;
 import templates.commands.CommandBase;
 import templates.commands.ShooterCommand;
 
 public class ShooterSubsystem extends Subsystem {
 
-    DoubleSolenoid shooterPiston = new DoubleSolenoid(RobotMap.SHOOTER_ONE, RobotMap.SHOOTER_TWO);
+    Pneumatic shooterPiston = new Pneumatic(new DoubleSolenoid(RobotMap.SHOOTER_ONE, RobotMap.SHOOTER_TWO), true, false);
     Victor vicWinch = new Victor(RobotMap.WINCH_MOTOR);
     DigitalInput limitSwitch = new DigitalInput(RobotMap.LIMIT_SWITCH);
     boolean shooterArmed;
@@ -26,16 +27,8 @@ public class ShooterSubsystem extends Subsystem {
         return limitSwitch.get();
     }
 
-    public void setPistonState(boolean state) {
-        if (state) {
-            shooterPiston.set(DoubleSolenoid.Value.kForward);
-        } else {
-            shooterPiston.set(DoubleSolenoid.Value.kReverse);
-        }
-    }
-
-    public boolean getWinchEngaged() {
-        return shooterPiston.get() == DoubleSolenoid.Value.kForward;
+    public boolean winchEngaged() {
+        return shooterPiston.get();
     }
 
     public void update(boolean fireShot, boolean autoReload) {
@@ -50,10 +43,10 @@ public class ShooterSubsystem extends Subsystem {
 
         if (getLimit() && CommandBase.pickupSubsystem.allowShot() && fireShot) {
             lastReleaseTime = now;
-            setPistonState(true); //Disengage the winch
+            shooterPiston.set(true); //Disengage the winch
         } else if (shooterReleaseDelay && autoReload) {
             //lastReleaseTime = now;
-            setPistonState(false); //Engage the winch
+            shooterPiston.set(false); //Engage the winch
         }
         
         //If the limit switch is pressed, allow shooter to be armed
@@ -96,7 +89,7 @@ public class ShooterSubsystem extends Subsystem {
     }
 
     public void print() {
-        //System.out.println("[ShooterSubsystem]");
+        System.out.println("[ShooterSubsystem] **********************************");
         //System.out.println("Acutal limit switch: " + limitSwitch.get());
         //System.out.println("Winch: " + vicWinch.get());
         //System.out.println("Piston: " + getWinchEngaged());

@@ -20,7 +20,7 @@ public class AutonomousPickupCommand extends CommandBase{
 
     protected boolean isFinished() {
         //If the pickup is in the desired state then we're finished
-        return pickupSubsystem.getPistonState() == state;
+        return pickupSubsystem.pickupDown() == state;
     }
 
     protected void end() {

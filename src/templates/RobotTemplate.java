@@ -31,7 +31,7 @@ public class RobotTemplate extends IterativeRobot {
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-        print();
+        print("Autonomous");
     }
 
     public void teleopInit() {
@@ -41,20 +41,23 @@ public class RobotTemplate extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        print();
+        print("Teleop");
         testMakeSureToRemove.set(CommandBase.oi.getShifterButton());
     }
 
     public void testPeriodic() {
-        print();
+        print("Test");
     }
 
-    void print() {
+    void print(String mode) {
 
         long now = System.currentTimeMillis();
 
         if (now - lastPrintTime > 500) {
             lastPrintTime = now;
+            
+            System.out.println("[" + mode + "]");
+            
             CommandBase.chassisSubsystem.print();
             CommandBase.pickupSubsystem.print();
             CommandBase.shooterSubsystem.print();

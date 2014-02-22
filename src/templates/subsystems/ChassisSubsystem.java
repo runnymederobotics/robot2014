@@ -8,13 +8,14 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import templates.ArcadeDrive;
 import templates.Constants;
+import templates.Pneumatic;
 import templates.RobotMap;
 import templates.Storage;
 import templates.commands.TeleopDriveCommand;
 
 public class ChassisSubsystem extends Subsystem {
 
-    Solenoid shifter = new Solenoid(RobotMap.SHIFTER);
+    Pneumatic shifter = new Pneumatic(new Solenoid(RobotMap.SHIFTER), false, false);
     Encoder encLeft = new Encoder(RobotMap.ENC_LEFT_ONE, RobotMap.ENC_LEFT_TWO, true);
     Encoder encRight = new Encoder(RobotMap.ENC_RIGHT_ONE, RobotMap.ENC_RIGHT_TWO, false);
     Victor vicLeft = new Victor(RobotMap.LEFT_MOTOR);
@@ -103,7 +104,7 @@ public class ChassisSubsystem extends Subsystem {
 
     public void print() {
 
-        System.out.println("[ChassisSubsystem]");
+        System.out.println("[ChassisSubsystem] **********************************");
         //System.out.println("Left Speed: " + leftStorage.get());
         //System.out.println("Right Speed: " + rightStorage.get());
         //System.out.println("Left Distance: " + encLeft.getDistance());
