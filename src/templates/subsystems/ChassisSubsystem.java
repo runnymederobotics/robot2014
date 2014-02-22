@@ -16,13 +16,13 @@ public class ChassisSubsystem extends Subsystem {
 
     Solenoid shifter = new Solenoid(RobotMap.SHIFTER);
     Encoder encLeft = new Encoder(RobotMap.ENC_LEFT_ONE, RobotMap.ENC_LEFT_TWO, true);
-    Encoder encRight = new Encoder(RobotMap.ENC_RIGHT_ONE, RobotMap.ENC_RIGHT_TWO, true);
+    Encoder encRight = new Encoder(RobotMap.ENC_RIGHT_ONE, RobotMap.ENC_RIGHT_TWO, false);
     Victor vicLeft = new Victor(RobotMap.LEFT_MOTOR);
     Victor vicRight = new Victor(RobotMap.RIGHT_MOTOR);
     Storage leftStorage = new Storage();
     Storage rightStorage = new Storage();
-    PIDController leftPID = new PIDController(0.0, 0.0, 0.0, encLeft, vicLeft);
-    PIDController rightPID = new PIDController(0.0, 0.0, 0.0, encRight, vicRight);
+    PIDController pidLeft = new PIDController(0.0005, 0.0, 0.0, encLeft, vicLeft);
+    PIDController pidRight = new PIDController(0.0005, 0.0, 0.0, encRight, vicRight);
     ArcadeDrive arcadeDrive = new ArcadeDrive(leftStorage, rightStorage);
 
     public ChassisSubsystem() {
@@ -32,24 +32,24 @@ public class ChassisSubsystem extends Subsystem {
         encLeft.start();
         encRight.start();
 
-        leftPID.setInputRange(-Constants.MAX_ENCODER_COUNTS, Constants.MAX_ENCODER_COUNTS);
-        rightPID.setInputRange(-Constants.MAX_ENCODER_COUNTS, Constants.MAX_ENCODER_COUNTS);
+        pidLeft.setInputRange(-Constants.MAX_ENCODER_COUNTS, Constants.MAX_ENCODER_COUNTS);
+        pidRight.setInputRange(-Constants.MAX_ENCODER_COUNTS, Constants.MAX_ENCODER_COUNTS);
 
-        leftPID.setOutputRange(-1.0, 1.0);
-        rightPID.setOutputRange(-1.0, 1.0);
+        pidLeft.setOutputRange(-1.0, 1.0);
+        pidRight.setOutputRange(-1.0, 1.0);
     }
 
     public void enable() {
-        //leftPID.enable();
-        //rightPID.enable();
+        //pidLeft.enable();
+        //pidRight.enable();
     }
 
     public void disable() {
-        leftPID.disable();
-        rightPID.disable();
+        pidLeft.disable();
+        pidRight.disable();
 
-        leftPID.setSetpoint(0);
-        rightPID.setSetpoint(0);
+        pidLeft.setSetpoint(0);
+        pidRight.setSetpoint(0);
 
         vicLeft.set(0.0);
         vicRight.set(0.0);
@@ -69,14 +69,14 @@ public class ChassisSubsystem extends Subsystem {
 
         arcadeDrive.drive(speed, -rotation);
 
-        leftSetpoint = leftStorage.get();
-        rightSetpoint = rightStorage.get();
+        leftSetpoint = leftStorage.get();// * Constants.MAX_ENCODER_COUNTS;
+        rightSetpoint = -rightStorage.get();// * Constants.MAX_ENCODER_COUNTS;
 
         vicLeft.set(leftSetpoint);
-        vicRight.set(-rightSetpoint);
+        vicRight.set(rightSetpoint);
 
-        //leftPID.setSetpoint(leftSetpoint * RobotMap.MAX_ENCODER_COUNTS);
-        //rightPID.setSetpoint(rightSetpoint * RobotMap.MAX_ENCODER_COUNTS);
+        //pidLeft.setSetpoint(leftSetpoint);
+        //pidRight.setSetpoint(rightSetpoint);
     }
 
     public void shift(boolean state) {
@@ -92,7 +92,7 @@ public class ChassisSubsystem extends Subsystem {
         double encLeftDistance = encLeft.getDistance();
         double encRightDistance = encRight.getDistance();
 
-        return (encLeftDistance - encRightDistance) / 2;
+        return (encLeftDistance + encRightDistance) / 2;
 
     }
 
@@ -104,10 +104,12 @@ public class ChassisSubsystem extends Subsystem {
     public void print() {
 
         System.out.println("[ChassisSubsystem]");
-        System.out.println("Left Speed: " + leftStorage.get());
-        System.out.println("Right Speed: " + rightStorage.get());
-        System.out.println("Left Distance: " + encLeft.getDistance());
-        System.out.println("Right Distance: " + encRight.getDistance());
+        //System.out.println("Left Speed: " + leftStorage.get());
+        //System.out.println("Right Speed: " + rightStorage.get());
+        //System.out.println("Left Distance: " + encLeft.getDistance());
+        //System.out.println("Right Distance: " + encRight.getDistance());
+        System.out.println("Left Encoder Rate " + encLeft.getRate());
+        System.out.println("Right Encoder Rate " + encRight.getRate());
 
     }
 }

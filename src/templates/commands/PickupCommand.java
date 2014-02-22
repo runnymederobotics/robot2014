@@ -11,11 +11,13 @@ public class PickupCommand extends CommandBase {
 
     protected void execute() {
 
-        boolean requestDeploy = oi.getPickupButton();
+        boolean requestDeploy = oi.getLowerPickupButton();
+        boolean requestPickup = oi.getPickupButton();
+        boolean requestRoll = oi.getRunPickupButton();
         boolean requestReverse = oi.getPickupReverseButton();
 
-        pickupSubsystem.updatePistonState(requestDeploy);
-        pickupSubsystem.updateRoller(requestDeploy, requestReverse);
+        pickupSubsystem.updatePistonState(requestPickup || requestDeploy);
+        pickupSubsystem.updateRoller(requestRoll || requestPickup, requestReverse);
     }
 
     protected boolean isFinished() {

@@ -1,7 +1,11 @@
 package templates.commands;
 
+import templates.Toggle;
+
 public class ShooterCommand extends CommandBase {
 
+    Toggle toggleWinch = new Toggle(false);
+    
     public ShooterCommand() {
         requires(shooterSubsystem);
     }
@@ -10,7 +14,10 @@ public class ShooterCommand extends CommandBase {
     }
 
     protected void execute() {
-        shooterSubsystem.update(oi.getShooterArmButton(), oi.getShooterFireButton());
+        toggleWinch.feed(oi.getWinchToggle());
+        
+        shooterSubsystem.update(oi.getShooterFireButton(), toggleWinch.getValue());
+        System.out.println(toggleWinch.getValue());
     }
 
     public static boolean getLimit() {

@@ -32,16 +32,14 @@ public class ArcadeDrive {
         leftSpeed = Math.abs(leftSpeed);
         rightSpeed = Math.abs(rightSpeed);
 
-        if (leftSpeed != 0.0 && rightSpeed != 0.0) {
-            if (leftSpeed > 1.0) {
-                double ratio = leftSpeed / rightSpeed;
-                leftSpeed = 1.0;
-                rightSpeed = 1.0 / ratio;
-            } else if (rightSpeed > 1.0) {
-                double ratio = rightSpeed / leftSpeed;
-                leftSpeed = 1.0 / ratio;
-                rightSpeed = 1.0;
-            }
+        if (leftSpeed > 1.0 && rightSpeed != 0.0) {
+            double ratio = leftSpeed / rightSpeed;
+            leftSpeed = 1.0;
+            rightSpeed = 1.0 / ratio;
+        } else if (rightSpeed > 1.0 && leftSpeed != 0.0) {
+            double ratio = rightSpeed / leftSpeed;
+            leftSpeed = 1.0 / ratio;
+            rightSpeed = 1.0;
         }
 
         leftSpeed *= leftSign;

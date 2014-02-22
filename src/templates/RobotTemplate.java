@@ -2,6 +2,7 @@ package templates;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import templates.commands.AutonomousCommandGroup;
 import templates.commands.CommandBase;
@@ -10,6 +11,7 @@ public class RobotTemplate extends IterativeRobot {
 
     Compressor compressor = new Compressor(RobotMap.PRESSURE_SWITCH, RobotMap.COMPRESSOR_RELAY);
     long lastPrintTime = 0;
+    Solenoid testMakeSureToRemove = new Solenoid(6);
 
     public void robotInit() {
         compressor.start();
@@ -40,6 +42,7 @@ public class RobotTemplate extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         print();
+        testMakeSureToRemove.set(CommandBase.oi.getShifterButton());
     }
 
     public void testPeriodic() {

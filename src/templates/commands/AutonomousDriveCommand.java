@@ -8,6 +8,7 @@ public class AutonomousDriveCommand extends CommandBase {
 
     public AutonomousDriveCommand(double distanceInInches) {
         requires(chassisSubsystem);
+        
         encoderCounts = distanceInInches * Constants.ENCODER_COUNTS_PER_INCH;
     }
 

@@ -10,9 +10,9 @@ import templates.commands.PickupCommand;
 
 public class PickupSubsystem extends Subsystem {
 
-    Victor pickupVic = new Victor(RobotMap.PICKUP_MOTOR);
+    Victor vicPickup = new Victor(RobotMap.PICKUP_MOTOR);
     DoubleSolenoid pickupPiston = new DoubleSolenoid(RobotMap.PICKUP_ONE, RobotMap.PICKUP_TWO);
-    long lastDeployTime = 0;
+    long lastRetractedTime = 0;
 
     public void setPistonState(boolean state) {
         if (!state) {
@@ -31,34 +31,43 @@ public class PickupSubsystem extends Subsystem {
 
         //Loading or shooting or winching or ready?
         //Determine whether or not the shooter is "armed"
-        boolean shooterState = CommandBase.shooterSubsystem.getShooterArmed();
+        boolean shooterArmed = CommandBase.shooterSubsystem.shooterArmed();
 
         //If we're not deployed and we want to be
         //We want to deploy only if we request it or if the shooter is in the loaded state
-        if (shooterState || requestDeploy) {
+        if (shooterArmed || requestDeploy) {
             setPistonState(true); //Deploy the pickup
         } else {
             //Record the time we were last in the retracted state
-            lastDeployTime = now;
+            lastRetractedTime = now;
             setPistonState(false); //Retract the pickup
         }
     }
 
     public void updateRoller(boolean runForward, boolean runReverse) {
-        if (runForward) {
-            pickupVic.set(Constants.PICKUP_SPEED);
+
+        long now = System.currentTimeMillis();
+
+        double pickupSpeed = 0.0;
+
+        //If the pickup has been out for less than Constants.PICKUP_DEPLOY_ROLLER_TIME
+        if (getPistonState() && now - lastRetractedTime < Constants.PICKUP_DEPLOY_ROLLER_TIME) {
+            pickupSpeed = Constants.PICKUP_DEPLOY_SPEED;
         } else if (runReverse) {
-            pickupVic.set(-Constants.PICKUP_SPEED);
-        } else {
-            pickupVic.set(0.0);
+            pickupSpeed = -Constants.PICKUP_SPEED;
+        } else if (runForward) {// && CommandBase.shooterSubsystem.getLimit()) {
+            //You can't try to intake unless the limit switch is pressed
+            pickupSpeed = Constants.PICKUP_SPEED;
         }
+        
+        vicPickup.set(pickupSpeed);
     }
 
     public boolean allowShot() {
         long now = System.currentTimeMillis();
 
         //Allow a shot if it's deployed and we've delayed long enough
-        return getPistonState() && now - lastDeployTime >= Constants.PICKUP_MOTION_TIME;
+        return getPistonState() && now - lastRetractedTime >= Constants.PICKUP_MOTION_TIME;
     }
 
     protected void initDefaultCommand() {
@@ -66,5 +75,6 @@ public class PickupSubsystem extends Subsystem {
     }
 
     public void print() {
+        //System.out.println("Pickup speed: " + vicPickup.get());
     }
 }

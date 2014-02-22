@@ -11,7 +11,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  * @author 1310
  */
 public class AutonomousCommandGroup extends CommandGroup {
+
     public AutonomousCommandGroup() {
-        addSequential(new AutonomousDriveCommand(72));
+        addParallel(new AutonomousParallelShooterCommand()); //Enable automatic winching
+        addParallel(new AutonomousParallelPickupCommand()); //Allow pickup to control itself for "armed" state
+        addSequential(new AutonomousDriveCommand(72)); //Drive forward 72 inches
+        addSequential(new AutonomousShootCommand()); //Shoot, which stops the automatic winch command
+        addParallel(new AutonomousParallelShooterCommand()); //Go back to automatic winching
     }
 }
