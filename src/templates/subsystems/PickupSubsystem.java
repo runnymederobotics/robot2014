@@ -52,7 +52,7 @@ public class PickupSubsystem extends Subsystem {
             //You can't try to intake unless the limit switch is pressed
             pickupSpeed = Constants.PICKUP_SPEED;
         }
-        
+
         vicPickup.set(pickupSpeed);
     }
 
