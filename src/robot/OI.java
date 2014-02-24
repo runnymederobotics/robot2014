@@ -23,9 +23,14 @@ public class OI {
         public static final int SHOOTER_BUTTON = 6;
         public static final int PICKUP_REVERSE_BUTTON = 3;
         public static final int POSSESION_TOGGLE_BUTTON = 4;
+        public static final int CATCH_BUTTON = 8;
     }
 
     public boolean getRunPickupButton() {
+        return Operator.joystick.getRawButton(Operator.RUN_PICKUP_BUTTON);
+    }
+    
+    public boolean getDeployCatchButton() {
         return Operator.joystick.getRawButton(Operator.RUN_PICKUP_BUTTON);
     }
 

@@ -26,4 +26,6 @@ public class RobotMap {
     public static final int SHOOTER_TWO = 3;
     public static final int PICKUP_ONE = 4;
     public static final int PICKUP_TWO = 5;
+    public static final int CATCH_PISTON_ONE = 6;
+    public static final int CATCH_PISTON_TWO = 7;
 }
