@@ -41,7 +41,7 @@ public class ShooterSubsystem extends Subsystem {
 
         boolean shooterReleaseDelay = finishedShooting();
 
-        if (getLimit() && CommandBase.pickupSubsystem.allowShot() && fireShot) {
+        if (getLimit() && CommandBase.pickupSubsystem.allowShot() && fireShot && CommandBase.catchSubsystem.allowShot()) {
             lastReleaseTime = now;
             shooterPiston.set(true); //Disengage the winch
         } else if (shooterReleaseDelay && autoReload) {

@@ -5,14 +5,11 @@ import robot.commands.CommandBase;
 
 public class AutonomousWaitForReloadCommand extends CommandBase {
 
-    public AutonomousWaitForReloadCommand() {
-        requires(shooterSubsystem);
-    }
-
     protected void initialize() {
     }
 
     protected void execute() {
+        shooterSubsystem.update(false, true);
     }
 
     protected boolean isFinished() {

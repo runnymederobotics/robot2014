@@ -3,13 +3,9 @@ package robot.commands.autonomous;
 import edu.wpi.first.wpilibj.DriverStation;
 import robot.commands.CommandBase;
 
-public class AutonomousPickupRollerCommand extends CommandBase {
-    
-    boolean requestRoll;
-    
-    public AutonomousPickupRollerCommand(boolean requestRoll) {
+public class AutonomousPickupRollerReverseCommand extends CommandBase {
+    public AutonomousPickupRollerReverseCommand() {
         requires(pickupSubsystem);
-        this.requestRoll = requestRoll;
     }
 
     protected void initialize() {
@@ -18,7 +14,7 @@ public class AutonomousPickupRollerCommand extends CommandBase {
 
     protected void execute() {
         pickupSubsystem.updatePistonState(true);
-        pickupSubsystem.updateRoller(requestRoll, false, false);
+        pickupSubsystem.updateRoller(false, true, false);
     }
 
     protected boolean isFinished() {

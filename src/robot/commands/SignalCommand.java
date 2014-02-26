@@ -1,7 +1,6 @@
 package robot.commands;
 
 import robot.Toggle;
-import robot.commands.CommandBase;
 
 public class SignalCommand extends CommandBase {
 
