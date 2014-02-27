@@ -28,6 +28,10 @@ public class Toggle {
 
     }
     
+    public void changeState(boolean state){
+        this.state = state;
+    }
+    
     public long getToggleTime(){
         return toggleTime;
     }

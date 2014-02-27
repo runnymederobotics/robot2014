@@ -5,7 +5,9 @@ import java.io.InputStream;
 import javax.microedition.io.Connector;
 import javax.microedition.io.StreamConnection;
 import javax.microedition.io.StreamConnectionNotifier;
+import robot.commands.autonomous.LowGoalCommandGroup;
 import robot.commands.autonomous.OneBallCommandGroup;
+import robot.commands.autonomous.TwoBallCommandGroup;
 import robot.commands.autonomous.TwoBallDragCommandGroup;
 
 public class RobotServer extends Thread {
@@ -38,7 +40,7 @@ public class RobotServer extends Thread {
             e.printStackTrace();
         }
     }
-    
+
     public CommandGroup getAutonomousCommand() {
         return currentAutonomousCommand;
     }
@@ -90,6 +92,12 @@ public class RobotServer extends Thread {
             if (input.equals("OneBall")) {
                 System.out.println("Selecting: " + input);
                 currentAutonomousCommand = new OneBallCommandGroup();
+            } else if (input.equals("LowGoal")) {
+                System.out.println("Selecting: " + input);
+                currentAutonomousCommand = new LowGoalCommandGroup();
+            } else if (input.equals("TwoBall")) {
+                System.out.println("Selecting: " + input);
+                currentAutonomousCommand = new TwoBallCommandGroup();
             } else if (input.equals("TwoBallDrag")) {
                 System.out.println("Selecting: " + input);
                 currentAutonomousCommand = new TwoBallDragCommandGroup();

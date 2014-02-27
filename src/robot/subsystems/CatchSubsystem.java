@@ -12,26 +12,25 @@ public class CatchSubsystem extends Subsystem {
 
     Actuator catchPiston = new Actuator(new Solenoid(RobotMap.CATCH_PISTON), false, false);
     long lastTimeDeployed;
-    boolean lastState = false;
 
     protected void initDefaultCommand() {
         setDefaultCommand(new TeleopCatchCommand());
     }
 
     public void update(boolean requestDeploy) {
-        if (!lastState && requestDeploy) {
-            lastTimeDeployed = System.currentTimeMillis();
-        }
-        lastState = requestDeploy;
 
         if (CommandBase.shooterSubsystem.shooterArmed() && CommandBase.pickupSubsystem.allowShot()) {
-            catchPiston.set(true);
+            requestDeploy = true;
+        }
+
+        if (!requestDeploy) {
+            lastTimeDeployed = System.currentTimeMillis();
         }
 
         catchPiston.set(requestDeploy);
     }
 
     public boolean allowShot() {
-        return System.currentTimeMillis() - lastTimeDeployed  > Constants.CATCH_DEPLOY_TIME;
+        return System.currentTimeMillis() - lastTimeDeployed > Constants.CATCH_DEPLOY_TIME;
     }
 }

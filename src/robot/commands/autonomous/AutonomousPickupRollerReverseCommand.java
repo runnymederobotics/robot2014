@@ -13,7 +13,6 @@ public class AutonomousPickupRollerReverseCommand extends CommandBase {
     }
 
     protected void execute() {
-        pickupSubsystem.updatePistonState(true);
         pickupSubsystem.updateRoller(false, true, false);
     }
 

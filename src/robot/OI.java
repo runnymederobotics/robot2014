@@ -10,28 +10,27 @@ public class OI {
         public static final int DRIVE_AXIS = 2;
         public static final int ROTATION_AXIS = 3;
         public static final int SHIFTER_BUTTON = 8;
-        public static final int PICKUP_BUTTON = 7;
         public static final int PID_TOGGLE = 9;
+        public static final int PICKUP_REVERSE_BUTTON = 3;
+        public static final int LOWER_PICKUP_BUTTON = 5;
+        public static final int RUN_PICKUP_BUTTON = 7;
+        public static final int SHOOTER_BUTTON = 6;
     }
 
     public static final class Operator {
 
         public static final Joystick joystick = new Joystick(2);
-        public static final int RUN_PICKUP_BUTTON = 7;
         public static final int WINCH_TOGGLE = 2;
-        public static final int LOWER_PICKUP_BUTTON = 5;
-        public static final int SHOOTER_BUTTON = 6;
-        public static final int PICKUP_REVERSE_BUTTON = 3;
         public static final int POSSESION_TOGGLE_BUTTON = 4;
         public static final int CATCH_BUTTON = 8;
     }
 
     public boolean getRunPickupButton() {
-        return Operator.joystick.getRawButton(Operator.RUN_PICKUP_BUTTON);
+        return Driver.joystick.getRawButton(Driver.RUN_PICKUP_BUTTON);
     }
-    
+
     public boolean getDeployCatchButton() {
-        return Operator.joystick.getRawButton(Operator.RUN_PICKUP_BUTTON);
+        return Operator.joystick.getRawButton(Operator.CATCH_BUTTON);
     }
 
     public boolean getWinchToggle() {
@@ -39,19 +38,15 @@ public class OI {
     }
 
     public boolean getLowerPickupButton() {
-        return Operator.joystick.getRawButton(Operator.LOWER_PICKUP_BUTTON);
+        return Driver.joystick.getRawButton(Driver.LOWER_PICKUP_BUTTON);
     }
 
     public boolean getPickupReverseButton() {
-        return Operator.joystick.getRawButton(Operator.PICKUP_REVERSE_BUTTON);
-    }
-
-    public boolean getPickupButton() {
-        return Driver.joystick.getRawButton(Driver.PICKUP_BUTTON);
+        return Driver.joystick.getRawButton(Driver.PICKUP_REVERSE_BUTTON);
     }
 
     public boolean getShooterFireButton() {
-        return Operator.joystick.getRawButton(Operator.SHOOTER_BUTTON);
+        return Driver.joystick.getRawButton(Driver.SHOOTER_BUTTON);
     }
 
     public boolean getShifterButton() {
@@ -69,7 +64,7 @@ public class OI {
     public boolean getPossesionToggle() {
         return Operator.joystick.getRawButton(Operator.POSSESION_TOGGLE_BUTTON);
     }
-    
+
     public boolean getTogglePID() {
         return Driver.joystick.getRawButton(Driver.PID_TOGGLE);
     }

@@ -29,8 +29,10 @@ public class TeleopShooterCommand extends CommandBase {
     }
 
     protected void end() {
+        toggleWinch.changeState(false);
     }
 
     protected void interrupted() {
+        end();
     }
 }

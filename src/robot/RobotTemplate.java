@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import robot.commands.CommandBase;
-import robot.commands.autonomous.TwoBallDragCommandGroup;
 
 public class RobotTemplate extends IterativeRobot {
 
@@ -29,8 +28,7 @@ public class RobotTemplate extends IterativeRobot {
     }
     
     public void autonomousInit() {
-        //Scheduler.getInstance().add(robotServer.getAutonomousCommand());//new OneBallCommandGroup());
-        Scheduler.getInstance().add(new TwoBallDragCommandGroup());
+        Scheduler.getInstance().add(robotServer.getAutonomousCommand());//new OneBallCommandGroup());
         compressor.start();
         CommandBase.enable();
     }
@@ -60,12 +58,13 @@ public class RobotTemplate extends IterativeRobot {
 
         if (now - lastPrintTime > 500) {
             lastPrintTime = now;
-            
+            /*
             System.out.println("[" + mode + "]");
             
             CommandBase.chassisSubsystem.print();
             CommandBase.pickupSubsystem.print();
             CommandBase.shooterSubsystem.print();
+            */
         }
     }
 }

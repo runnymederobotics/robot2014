@@ -5,8 +5,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LowGoalCommandGroup extends CommandGroup{
     
     public LowGoalCommandGroup(){
-        addSequential(new AutonomousDriveCommand(120));
-        addSequential(new AutonomousPickupRollerReverseCommand());
+        addSequential(new AutonomousDriveCommand(-180));
+        addParallel(new AutonomousPickupRollerReverseCommand());
+        addSequential(new AutonomousDelayCommand(1000));
+        addParallel(new AutonomousParallelPickupCommand());
     }
     
 }

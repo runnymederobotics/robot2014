@@ -52,7 +52,7 @@ public class Actuator {
         } else if (relay != null) {
             Relay.Value value;
             if (state) {
-                value = Relay.Value.kOn;
+                value = Relay.Value.kForward;
             } else {
                 value = Relay.Value.kOff;
             }

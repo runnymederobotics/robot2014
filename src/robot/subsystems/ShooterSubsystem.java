@@ -17,7 +17,8 @@ public class ShooterSubsystem extends Subsystem {
     DigitalInput limitSwitch = new DigitalInput(RobotMap.LIMIT_SWITCH);
     boolean shooterArmed;
     long lastReleaseTime; //Records the time of the last shot
-
+    long lastPrintTime = 0;
+    
     protected void initDefaultCommand() {
         setDefaultCommand(new TeleopShooterCommand());
     }
@@ -48,25 +49,34 @@ public class ShooterSubsystem extends Subsystem {
             //lastReleaseTime = now;
             shooterPiston.set(false); //Engage the winch
         }
-        
+
         //If the limit switch is pressed, allow shooter to be armed
         if (getLimit() && fireShot) {
             shooterArmed = true;
         } else if (shooterReleaseDelay) { //Don't put shooter into disarmed state until the shooterReleaseDelay has happened
             shooterArmed = false;
         }
-        
+
         double winchSpeed = 0.0;
 
         //If we want to auto load, only do it if the limit is not pressed, and the winch is engaged
         if (autoReload) {
+            if (now - lastPrintTime > Constants.PRINT_DELAY) {
+                lastPrintTime = now;
+                System.out.println("Winching...");
+            }
             if (!getLimit()) {
                 //andymark shifter is positive, engaged state of shooter is true
                 winchSpeed = Constants.WINCH_SPEED;
+
             } else {
                 winchSpeed = 0.0;
             }
         } else {
+            if (now - lastPrintTime > Constants.PRINT_DELAY) {
+                lastPrintTime = now;
+                System.out.println("not Winching");
+            }
             //Manual mode?
             //winchSpeed = 0.0;
         }
@@ -74,13 +84,13 @@ public class ShooterSubsystem extends Subsystem {
         if (getLimit()) {
             winchSpeed = 0.0;
         }
-        
+
         vicWinch.set(winchSpeed);
     }
-    
+
     public boolean finishedShooting() {
         long now = System.currentTimeMillis();
-        
+
         return now - lastReleaseTime > Constants.SHOOTER_RELEASE_DELAY;
     }
 
