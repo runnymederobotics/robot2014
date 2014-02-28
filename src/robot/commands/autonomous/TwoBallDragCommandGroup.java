@@ -9,7 +9,7 @@ public class TwoBallDragCommandGroup extends CommandGroup {
         addParallel(new AutonomousDragBallCommand()); //Enable dragging
 
         addSequential(new AutonomousDelayCommand(750)); //Delay for the pickup to engage the drag ball
-        addSequential(new AutonomousDriveCommand(99)); //Drive forward 
+        addSequential(new AutonomousDriveCommand(87)); //Drive forward 
 
         addParallel(new AutonomousPickupRollerCommand(false));
         addSequential(new AutonomousDelayCommand(200)); //Delay

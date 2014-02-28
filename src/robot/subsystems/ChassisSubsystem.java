@@ -81,7 +81,7 @@ public class ChassisSubsystem extends Subsystem {
             rotation = 0.0;
         }
 
-        arcadeDrive.drive(speed, -rotation);
+        arcadeDrive.drive(-speed, -rotation);
 
         double leftSpeed = leftStorage.get();
         double rightSpeed = -rightStorage.get();

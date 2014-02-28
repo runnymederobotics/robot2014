@@ -5,7 +5,7 @@ import robot.commands.CommandBase;
 
 public class TeleopShooterCommand extends CommandBase {
 
-    Toggle toggleWinch = new Toggle(false);
+    Toggle toggleWinch = new Toggle(true);
     
     public TeleopShooterCommand() {
         requires(shooterSubsystem);
@@ -29,10 +29,8 @@ public class TeleopShooterCommand extends CommandBase {
     }
 
     protected void end() {
-        toggleWinch.changeState(false);
     }
 
     protected void interrupted() {
-        end();
     }
 }

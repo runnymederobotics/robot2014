@@ -17,6 +17,7 @@ public class RobotServer extends Thread {
 
     public RobotServer(int port) {
         this.port = port;
+        this.currentAutonomousCommand = new OneBallCommandGroup();
     }
 
     public void run() {
