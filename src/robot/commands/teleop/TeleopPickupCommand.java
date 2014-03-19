@@ -13,7 +13,7 @@ public class TeleopPickupCommand extends CommandBase {
 
     protected void execute() {
 
-        boolean requestDeploy = oi.getLowerPickupButton() || oi.getDeployCatchButton();
+        boolean requestDeploy = oi.getLowerPickupButton();
         boolean requestRoll = oi.getRunPickupButton();
         boolean requestReverse = oi.getPickupReverseButton();
 

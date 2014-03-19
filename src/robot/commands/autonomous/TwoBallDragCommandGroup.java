@@ -9,12 +9,12 @@ public class TwoBallDragCommandGroup extends CommandGroup {
         addParallel(new AutonomousDragBallCommand()); //Enable dragging
 
         addSequential(new AutonomousDelayCommand(750)); //Delay for the pickup to engage the drag ball
-        addSequential(new AutonomousDriveCommand(87)); //Drive forward 
+        addSequential(new AutonomousDriveCommand(93)); //Drive forward 
 
         addParallel(new AutonomousPickupRollerCommand(false));
         addSequential(new AutonomousDelayCommand(200)); //Delay
 
-        addSequential(new AutonomousCatchCommand(true));
+        //addSequential(new AutonomousCatchCommand(true));
         addSequential(new AutonomousShootCommand()); //Shoot, which stops the automatic winch command
         addParallel(new AutonomousParallelShooterCommand()); //Go back to automatic winching
 

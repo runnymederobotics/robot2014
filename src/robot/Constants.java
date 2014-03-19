@@ -11,7 +11,7 @@ public class Constants {
     public static final long WINCH_ENGAGE_DELAY = 250;
     public static final long PICKUP_DEPLOY_ROLLER_START_TIME = 100;
     public static final long PICKUP_DEPLOY_ROLLER_END_TIME = 750;
-    public static final long CATCH_DEPLOY_TIME = 100;
+    public static final long CATCH_DEPLOY_TIME = 300;
     public static final double PICKUP_SPEED = 1.0;
     public static final double PICKUP_DEPLOY_SPEED = 0.175;
     public static final double PICKUP_DRAG_SPEED = 0.4;
