@@ -15,6 +15,7 @@ public class ShooterSubsystem extends Subsystem {
     Actuator shooterPiston = new Actuator(new DoubleSolenoid(RobotMap.SHOOTER_ONE, RobotMap.SHOOTER_TWO), true, false);
     Victor vicWinch = new Victor(RobotMap.WINCH_MOTOR);
     DigitalInput limitSwitch = new DigitalInput(RobotMap.LIMIT_SWITCH);
+    DigitalInput lightSensor = new DigitalInput(RobotMap.LIGHT_SENSOR);
     boolean shooterArmed;
     long lastReleaseTime; //Records the time of the last shot
     long lastPrintTime = 0;
@@ -25,7 +26,7 @@ public class ShooterSubsystem extends Subsystem {
 
     //The shooter is pulled back if the limit is true
     public boolean getLimit() {
-        return limitSwitch.get();
+        return limitSwitch.get() || !lightSensor.get();
     }
 
     public boolean winchEngaged() {

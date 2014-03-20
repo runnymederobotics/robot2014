@@ -15,6 +15,7 @@ public class RobotMap {
     public static final int ENC_RIGHT_ONE = 4;
     public static final int ENC_RIGHT_TWO = 5;
     public static final int LIMIT_SWITCH = 6;
+    public static final int LIGHT_SENSOR = 7;
     
     // Relay Ports
     public static final int COMPRESSOR_RELAY = 1;
