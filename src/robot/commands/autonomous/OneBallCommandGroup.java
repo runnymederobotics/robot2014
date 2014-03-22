@@ -8,6 +8,7 @@ public class OneBallCommandGroup extends CommandGroup {
         addParallel(new AutonomousParallelShooterCommand()); //Enable automatic winching
         addParallel(new AutonomousParallelPickupCommand()); //Allow pickup to control itself for "armed" state
         addSequential(new AutonomousPickupCommand(true));
+        addSequential(new AutonomousRampUpCommand(false));
         addSequential(new AutonomousDriveCommand(93)); //Drive forward
         addSequential(new AutonomousDelayCommand(200)); //Delay
         addSequential(new AutonomousShootCommand()); //Shoot, which stops the automatic winch command

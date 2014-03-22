@@ -11,6 +11,7 @@ public class TwoBallCommandGroup extends CommandGroup {
         addSequential(new AutonomousShootCommand()); //Shoot, which stops the automatic winch command
         addParallel(new AutonomousParallelShooterCommand()); //Go back to automatic winching
         
+        addSequential(new AutonomousRampUpCommand(false));
         addSequential(new AutonomousDriveCommand(-120));
         addParallel(new AutonomousPickupRollerCommand(true));
         addSequential(new AutonomousPickupCommand(true));
