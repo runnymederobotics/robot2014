@@ -1,12 +1,8 @@
 package robot.commands.teleop;
 
-import edu.wpi.first.wpilibj.DriverStation;
-import robot.Toggle;
 import robot.commands.CommandBase;
 
 public class TeleopShooterCommand extends CommandBase {
-
-    Toggle toggleWinch = new Toggle(true);
 
     public TeleopShooterCommand() {
         requires(shooterSubsystem);
@@ -16,13 +12,7 @@ public class TeleopShooterCommand extends CommandBase {
     }
 
     protected void execute() {
-        toggleWinch.feed(oi.getWinchToggle());
-
-        shooterSubsystem.update(oi.getShooterFireButton(), toggleWinch.get() && DriverStation.getInstance().getDigitalIn(1));   
-    }
-
-    public static boolean getLimit() {
-        return shooterSubsystem.getLimit();
+        shooterSubsystem.update(oi.getShooterFireButton());
     }
 
     protected boolean isFinished() {

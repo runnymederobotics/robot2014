@@ -2,23 +2,24 @@ package robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class TwoBallDragCommandGroup extends CommandGroup {
+public class TwoBallDragDriveShotCommandGroup extends CommandGroup {
 
-    public TwoBallDragCommandGroup() {
-        
+    public TwoBallDragDriveShotCommandGroup() {
+
         addParallel(new AutonomousParallelWinchCommand());
-        
+
         addParallel(new AutonomousParallelShooterCommand()); //Enable automatic winching
         addParallel(new AutonomousDragBallCommand()); //Enable dragging
 
         addSequential(new AutonomousDelayCommand(750)); //Delay for the pickup to engage the drag ball
         addSequential(new AutonomousRampUpCommand(false));
-        addSequential(new AutonomousDriveCommand(93)); //Drive forward 
-
-        addParallel(new AutonomousPickupRollerCommand(false));
-        addSequential(new AutonomousDelayCommand(200)); //Delay
-
+        addParallel(new AutonomousDriveCommand(93)); //Drive forward 
+        
+        addSequential(new AutonomousDelayCommand(1300));
         addSequential(new AutonomousShootCommand()); //Shoot, which stops the automatic winch command
+        addSequential(new AutonomousDelayCommand(500)); //Delay
+        
+        addParallel(new AutonomousPickupRollerCommand(false));
         addParallel(new AutonomousParallelShooterCommand()); //Go back to automatic winching
 
         addSequential(new AutonomousWaitForReloadCommand()); //Wait until the shooter is loaded again

@@ -13,12 +13,12 @@ public class AutonomousWaitForReloadCommand extends CommandBase {
     }
 
     protected void execute() {
-        shooterSubsystem.update(false, true);
+        shooterSubsystem.update(false);
     }
 
     protected boolean isFinished() {
         //When we've waited long enough and the limit is now pressed. This means it has shot and fully retracted again
-        return (shooterSubsystem.finishedShooting() && shooterSubsystem.getLimit()) || !DriverStation.getInstance().isAutonomous();
+        return (winchSubsystem.finishedShooting() && winchSubsystem.getLimit()) || !DriverStation.getInstance().isAutonomous();
     }
 
     protected void end() {

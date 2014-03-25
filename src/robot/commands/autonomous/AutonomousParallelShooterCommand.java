@@ -14,7 +14,7 @@ public class AutonomousParallelShooterCommand extends CommandBase {
 
     protected void execute() {
         //Don't fire, auto winch
-        shooterSubsystem.update(false, true);
+        shooterSubsystem.update(false);
     }
 
     protected boolean isFinished() {

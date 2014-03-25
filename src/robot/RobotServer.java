@@ -9,6 +9,7 @@ import robot.commands.autonomous.LowGoalCommandGroup;
 import robot.commands.autonomous.OneBallCommandGroup;
 import robot.commands.autonomous.TwoBallCommandGroup;
 import robot.commands.autonomous.TwoBallDragCommandGroup;
+import robot.commands.autonomous.TwoBallDragDriveShotCommandGroup;
 
 public class RobotServer extends Thread {
 
@@ -102,6 +103,9 @@ public class RobotServer extends Thread {
             } else if (input.equals("TwoBallDrag")) {
                 System.out.println("Selecting: " + input);
                 currentAutonomousCommand = new TwoBallDragCommandGroup();
+            } else if (input.equals("TwoBallDragDriveShot")) {
+                System.out.println("Selecting: " + input);
+                currentAutonomousCommand = new TwoBallDragDriveShotCommandGroup();
             } else {
                 System.out.println("Unknown input: " + input);
             }

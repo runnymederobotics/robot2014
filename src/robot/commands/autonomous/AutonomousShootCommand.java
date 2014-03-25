@@ -14,9 +14,9 @@ public class AutonomousShootCommand extends CommandBase {
 
     protected void execute() {
         if (DriverStation.getInstance().isAutonomous()) {
-            shooterSubsystem.update(true, true); //Shoot and auto winch
+            shooterSubsystem.update(true); //Shoot and auto winch
         } else {
-            shooterSubsystem.update(false, true); //Don't shoot and auto winch
+            shooterSubsystem.update(false); //Don't shoot and auto winch
         }
     }
 

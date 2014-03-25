@@ -22,15 +22,10 @@ public class OI {
         public static final Joystick joystick = new Joystick(2);
         public static final int WINCH_TOGGLE = 2;
         public static final int POSSESION_TOGGLE_BUTTON = 4;
-        public static final int CATCH_BUTTON = 8;
     }
 
     public boolean getRunPickupButton() {
         return Driver.joystick.getRawButton(Driver.RUN_PICKUP_BUTTON);
-    }
-
-    public boolean getDeployCatchButton() {
-        return Operator.joystick.getRawButton(Operator.CATCH_BUTTON);
     }
 
     public boolean getWinchToggle() {

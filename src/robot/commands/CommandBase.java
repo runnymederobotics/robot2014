@@ -2,12 +2,11 @@ package robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import robot.OI;
-import robot.subsystems.CatchSubsystem;
 import robot.subsystems.ChassisSubsystem;
 import robot.subsystems.PickupSubsystem;
 import robot.subsystems.ShooterSubsystem;
 import robot.subsystems.SignalSubsystem;
-
+import robot.subsystems.WinchSubsystem;
 
 public abstract class CommandBase extends Command {
 
@@ -16,9 +15,8 @@ public abstract class CommandBase extends Command {
     public static PickupSubsystem pickupSubsystem = new PickupSubsystem();
     public static ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
     public static SignalSubsystem signalSubsystem = new SignalSubsystem();
-    public static CatchSubsystem catchSubsystem = new CatchSubsystem();
+    public static WinchSubsystem winchSubsystem = new WinchSubsystem();
 
-    
     public static void init() {
         oi = new OI();
     }

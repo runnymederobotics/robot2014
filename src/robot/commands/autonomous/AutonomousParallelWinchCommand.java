@@ -1,25 +1,23 @@
 package robot.commands.autonomous;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import robot.commands.CommandBase;
 
-public class AutonomousCatchCommand extends CommandBase{
-
-    boolean state;
+public class AutonomousParallelWinchCommand extends CommandBase{
     
-    public AutonomousCatchCommand(boolean state){
-        requires(catchSubsystem);
-        this.state = state;
+    public AutonomousParallelWinchCommand(){
+        requires(winchSubsystem);
     }
-    
+
     protected void initialize() {
     }
 
     protected void execute() {
-        catchSubsystem.update(state);
+        winchSubsystem.update(true);
     }
 
     protected boolean isFinished() {
-        return true;
+        return !DriverStation.getInstance().isAutonomous();
     }
 
     protected void end() {

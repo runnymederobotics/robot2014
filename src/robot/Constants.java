@@ -14,7 +14,7 @@ public class Constants {
     public static final long CATCH_DEPLOY_TIME = 300;
     public static final double PICKUP_SPEED = 1.0;
     public static final double PICKUP_DEPLOY_SPEED = 0.175;
-    public static final double PICKUP_DRAG_SPEED = 0.4;
+    public static final double PICKUP_DRAG_SPEED = 0.3;
     public static final long PRINT_DELAY = 2500;
     public static final double AUTONOMOUS_RAMPUP_TIME = 500;
 }
