@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class TwoBallCommandGroup extends CommandGroup {
     public TwoBallCommandGroup(){
         
-        addParallel(new AutonomousParallelWinchCommand());
+        addParallel(new AutonomousWinchCommand());
         
         addParallel(new AutonomousParallelShooterCommand()); //Enable automatic winching
         addParallel(new AutonomousParallelPickupCommand()); //Allow pickup to control itself for "armed" state

@@ -3,9 +3,9 @@ package robot.commands.autonomous;
 import edu.wpi.first.wpilibj.DriverStation;
 import robot.commands.CommandBase;
 
-public class AutonomousParallelWinchCommand extends CommandBase{
+public class AutonomousWinchCommand extends CommandBase{
     
-    public AutonomousParallelWinchCommand(){
+    public AutonomousWinchCommand(){
         requires(winchSubsystem);
     }
 
@@ -13,7 +13,7 @@ public class AutonomousParallelWinchCommand extends CommandBase{
     }
 
     protected void execute() {
-        winchSubsystem.update(true);
+        winchSubsystem.update(DriverStation.getInstance().getDigitalIn(1));
     }
 
     protected boolean isFinished() {
@@ -25,5 +25,6 @@ public class AutonomousParallelWinchCommand extends CommandBase{
 
     protected void interrupted() {
     }
+    
     
 }

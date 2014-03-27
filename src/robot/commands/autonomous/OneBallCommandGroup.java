@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class OneBallCommandGroup extends CommandGroup {
 
     public OneBallCommandGroup() {
-        
-        addParallel(new AutonomousParallelWinchCommand());
-        
+
+        addParallel(new AutonomousWinchCommand());
+
         addParallel(new AutonomousParallelShooterCommand()); //Enable automatic winching
         addParallel(new AutonomousParallelPickupCommand()); //Allow pickup to control itself for "armed" state
         addSequential(new AutonomousPickupCommand(true));

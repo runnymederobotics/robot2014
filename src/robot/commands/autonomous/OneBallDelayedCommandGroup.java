@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class OneBallDelayedCommandGroup extends CommandGroup{
     public OneBallDelayedCommandGroup(){
         
-        addParallel(new AutonomousParallelWinchCommand());
+        addParallel(new AutonomousWinchCommand());
         
         addSequential(new AutonomousDelayCommand(4000));
         addParallel(new AutonomousParallelShooterCommand()); //Enable automatic winching

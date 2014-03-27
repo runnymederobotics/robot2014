@@ -6,7 +6,7 @@ public class TwoBallDragCommandGroup extends CommandGroup {
 
     public TwoBallDragCommandGroup() {
         
-        addParallel(new AutonomousParallelWinchCommand());
+        addParallel(new AutonomousWinchCommand());
         
         addParallel(new AutonomousParallelShooterCommand()); //Enable automatic winching
         addParallel(new AutonomousDragBallCommand()); //Enable dragging

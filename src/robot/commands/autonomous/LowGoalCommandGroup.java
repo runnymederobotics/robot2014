@@ -6,7 +6,7 @@ public class LowGoalCommandGroup extends CommandGroup {
 
     public LowGoalCommandGroup() {
 
-        addParallel(new AutonomousParallelWinchCommand());
+        addParallel(new AutonomousWinchCommand());
 
         addSequential(new AutonomousRampUpCommand(false));
         addSequential(new AutonomousDriveCommand(-180));
