@@ -6,13 +6,13 @@ public class LowGoalCommandGroup extends CommandGroup {
 
     public LowGoalCommandGroup() {
 
-        addParallel(new AutonomousWinchCommand());
+        //addParallel(new AutonomousWinchCommand());
 
-        addSequential(new AutonomousRampUpCommand(false));
-        addSequential(new AutonomousDriveCommand(-180));
-        addParallel(new AutonomousPickupRollerReverseCommand());
-        addSequential(new AutonomousDelayCommand(1000));
-        addParallel(new AutonomousParallelPickupCommand());
+        //addSequential(new AutonomousRampUpCommand(false));
+        addSequential(new AutonomousDriveCommand(100));
+        //addParallel(new AutonomousPickupRollerReverseCommand());
+        //addSequential(new AutonomousDelayCommand(1000));
+        //addParallel(new AutonomousParallelPickupCommand());
     }
 
 }

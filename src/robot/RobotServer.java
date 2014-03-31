@@ -7,9 +7,11 @@ import javax.microedition.io.StreamConnection;
 import javax.microedition.io.StreamConnectionNotifier;
 import robot.commands.autonomous.LowGoalCommandGroup;
 import robot.commands.autonomous.OneBallCommandGroup;
+import robot.commands.autonomous.OneBallDriveShotCommandGroup;
 import robot.commands.autonomous.TwoBallCommandGroup;
 import robot.commands.autonomous.TwoBallDragCommandGroup;
 import robot.commands.autonomous.TwoBallDragDriveShotCommandGroup;
+import robot.commands.autonomous.TwoBallDragDriveShotExtraDistanceCommandGroup;
 
 public class RobotServer extends Thread {
 
@@ -94,6 +96,9 @@ public class RobotServer extends Thread {
             if (input.equals("OneBall")) {
                 System.out.println("Selecting: " + input);
                 currentAutonomousCommand = new OneBallCommandGroup();
+            } else if (input.equals("OneBallDriveShot")) {
+                System.out.println("Selecting: " + input);
+                currentAutonomousCommand = new OneBallDriveShotCommandGroup();
             } else if (input.equals("LowGoal")) {
                 System.out.println("Selecting: " + input);
                 currentAutonomousCommand = new LowGoalCommandGroup();
@@ -106,6 +111,9 @@ public class RobotServer extends Thread {
             } else if (input.equals("TwoBallDragDriveShot")) {
                 System.out.println("Selecting: " + input);
                 currentAutonomousCommand = new TwoBallDragDriveShotCommandGroup();
+            } else if (input.equals("TwoBallDragDriveShotExtraDistance")) {
+                System.out.println("Selecting: " + input);
+                currentAutonomousCommand = new TwoBallDragDriveShotExtraDistanceCommandGroup();
             } else {
                 System.out.println("Unknown input: " + input);
             }

@@ -7,11 +7,12 @@ public class AutonomousEncoderDelayCommand extends CommandBase {
 
     double encoderCounts;
 
-    public AutonomousEncoderDelayCommand(double distanceInInches) {        
+    public AutonomousEncoderDelayCommand(double distanceInInches) {
         encoderCounts = distanceInInches * Constants.ENCODER_COUNTS_PER_INCH;
     }
 
     protected void initialize() {
+        chassisSubsystem.reset();
     }
 
     protected void execute() {
