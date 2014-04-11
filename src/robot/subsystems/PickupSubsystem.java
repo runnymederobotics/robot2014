@@ -64,7 +64,7 @@ public class PickupSubsystem extends Subsystem {
 
         vicPickup.set(pickupSpeed);
     }
-
+    
     public boolean allowShot() {
         long now = System.currentTimeMillis();
 

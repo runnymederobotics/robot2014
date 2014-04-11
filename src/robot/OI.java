@@ -22,6 +22,7 @@ public class OI {
         public static final Joystick joystick = new Joystick(2);
         public static final int WINCH_TOGGLE = 2;
         public static final int POSSESION_TOGGLE_BUTTON = 4;
+        public static final int TRAPPING_ASSIST_BUTTON = 8;
     }
 
     public boolean getRunPickupButton() {
@@ -30,6 +31,10 @@ public class OI {
 
     public boolean getWinchToggle() {
         return Operator.joystick.getRawButton(Operator.WINCH_TOGGLE);
+    }
+    
+    public boolean getTrappingAssistButton() {
+        return Operator.joystick.getRawButton(Operator.TRAPPING_ASSIST_BUTTON);
     }
 
     public boolean getLowerPickupButton() {

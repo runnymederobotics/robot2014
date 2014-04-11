@@ -13,9 +13,9 @@ public class TwoBallDragDriveShotCommandGroup extends CommandGroup {
 
         addSequential(new AutonomousDelayCommand(750)); //Delay for the pickup to engage the drag ball
         addSequential(new AutonomousRampUpCommand(false));
-        addParallel(new AutonomousDriveCommand(80)); //Drive forward 
+        addParallel(new AutonomousDriveCommand(88)); //Drive forward 
         
-        addSequential(new AutonomousEncoderDelayCommand(75));
+        addSequential(new AutonomousEncoderDelayCommand(83));
         //addSequential(new AutonomousDelayCommand(1500));
         addSequential(new AutonomousShootCommand()); //Shoot, which stops the automatic winch command
         addSequential(new AutonomousDelayCommand(500)); //Delay

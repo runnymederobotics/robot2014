@@ -1,5 +1,6 @@
 package robot.commands.autonomous;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import robot.Constants;
 import robot.commands.CommandBase;
 
@@ -30,6 +31,11 @@ public class AutonomousDriveCommand extends CommandBase {
     }
 
     protected boolean isFinished() {
+        
+        if(!DriverStation.getInstance().isAutonomous()){
+            return true;
+        }
+        
         if (Math.abs(chassisSubsystem.getEncoderCounts()) < Math.abs(encoderCounts)) {
             return false;
         } else {

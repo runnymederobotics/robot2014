@@ -15,7 +15,7 @@ public class TwoBallDragDriveShotExtraDistanceCommandGroup extends CommandGroup 
         addSequential(new AutonomousRampUpCommand(false));
         addParallel(new AutonomousDriveCommand(93)); //Drive forward 
         
-        addSequential(new AutonomousEncoderDelayCommand(78));
+        addSequential(new AutonomousEncoderDelayCommand(83));
         //addSequential(new AutonomousDelayCommand(1500));
         addSequential(new AutonomousShootCommand()); //Shoot, which stops the automatic winch command
         addSequential(new AutonomousDelayCommand(500)); //Delay
@@ -26,8 +26,8 @@ public class TwoBallDragDriveShotExtraDistanceCommandGroup extends CommandGroup 
         addSequential(new AutonomousWaitForReloadCommand()); //Wait until the shooter is loaded again
         addParallel(new AutonomousPickupRollerCommand(true)); //Bring the second ball in
         addSequential(new AutonomousDelayCommand(350));
-        addParallel(new AutonomousDriveCommand(35));
-        addSequential(new AutonomousDelayCommand(2000)); //Delay for second ball to get in
+        addParallel(new AutonomousDriveCommand(48));
+        addSequential(new AutonomousDelayCommand(3500)); //Delay for second ball to get in
         addParallel(new AutonomousPickupCommand(true));
 
         addSequential(new AutonomousShootCommand()); //Shoot, which stops the automatic winch command
