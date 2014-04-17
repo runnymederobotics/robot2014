@@ -1,5 +1,6 @@
 package robot.commands.autonomous;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import robot.commands.CommandBase;
 
 public class AutonomousDelayCommand extends CommandBase {
@@ -18,7 +19,7 @@ public class AutonomousDelayCommand extends CommandBase {
     }
 
     protected boolean isFinished() {
-        return System.currentTimeMillis() - startTime > delay;
+        return System.currentTimeMillis() - startTime > delay || !DriverStation.getInstance().isAutonomous();
     }
 
     protected void end() {

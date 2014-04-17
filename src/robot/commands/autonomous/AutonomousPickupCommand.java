@@ -1,5 +1,6 @@
 package robot.commands.autonomous;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import robot.commands.CommandBase;
 
 public class AutonomousPickupCommand extends CommandBase{
@@ -23,7 +24,7 @@ public class AutonomousPickupCommand extends CommandBase{
 
     protected boolean isFinished() {
         //If the pickup is in the desired state then we're finished
-        return pickupSubsystem.pickupDown() == state;
+        return pickupSubsystem.pickupDown() == state || !DriverStation.getInstance().isAutonomous();
     }
 
     protected void end() {

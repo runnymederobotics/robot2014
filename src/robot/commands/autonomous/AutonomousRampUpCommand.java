@@ -1,7 +1,7 @@
 package robot.commands.autonomous;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import robot.Constants;
-import robot.Toggle;
 import robot.commands.CommandBase;
 
 public class AutonomousRampUpCommand extends CommandBase {
@@ -40,7 +40,7 @@ public class AutonomousRampUpCommand extends CommandBase {
     }
 
     protected boolean isFinished() {
-        return (System.currentTimeMillis() - startTime) >= Constants.AUTONOMOUS_RAMPUP_TIME;
+        return (System.currentTimeMillis() - startTime) >= Constants.AUTONOMOUS_RAMPUP_TIME || !DriverStation.getInstance().isAutonomous();
     }
 
     protected void end() {

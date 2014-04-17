@@ -3,9 +3,9 @@ package robot.commands.autonomous;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import robot.Constants;
 
-public class OneBallCommandGroup extends CommandGroup {
+public class OneBallCheesyShotCommandGroup extends CommandGroup {
 
-    public OneBallCommandGroup() {
+    public OneBallCheesyShotCommandGroup() {
 
         addParallel(new AutonomousWinchCommand());
 
@@ -19,9 +19,6 @@ public class OneBallCommandGroup extends CommandGroup {
         addParallel(new AutonomousDriveCommand(93, Constants.AUTONOMOUS_DRIVE_SPEED)); //Drive forward 
         addSequential(new AutonomousEncoderDelayCommand(83)); //Delay
 
-        addSequential(new AutonomousShootCommand()); //Shoot, which stops the automatic winch command
-
-        addSequential(new AutonomousPickupCommand(false));
-        addSequential(new AutonomousDriveCommand(-141, Constants.AUTONOMOUS_DRIVE_SPEED));
+        addSequential(new AutonomousCheesyShootCommand()); //Shoot, which stops the automatic winch command
     }
 }

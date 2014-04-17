@@ -7,10 +7,12 @@ import robot.commands.CommandBase;
 public class AutonomousDriveCommand extends CommandBase {
 
     double encoderCounts;
+    double speed;
 
-    public AutonomousDriveCommand(double distanceInInches) {
+    public AutonomousDriveCommand(double distanceInInches, double speed) {
         requires(chassisSubsystem);
         
+        this.speed = speed;
         encoderCounts = distanceInInches * Constants.ENCODER_COUNTS_PER_INCH;
     }
 
@@ -27,7 +29,7 @@ public class AutonomousDriveCommand extends CommandBase {
         
         chassisSubsystem.shift(false);
         
-        chassisSubsystem.drive(Constants.AUTONOMOUS_DRIVE_SPEED * direction, 0.0);
+        chassisSubsystem.drive(speed * direction, 0.0);
     }
 
     protected boolean isFinished() {

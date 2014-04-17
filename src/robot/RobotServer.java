@@ -6,12 +6,13 @@ import javax.microedition.io.Connector;
 import javax.microedition.io.StreamConnection;
 import javax.microedition.io.StreamConnectionNotifier;
 import robot.commands.autonomous.LowGoalCommandGroup;
+import robot.commands.autonomous.MobilityCommandGroup;
+import robot.commands.autonomous.MobilityDelayedCommandGroup;
+import robot.commands.autonomous.NoAutoCommandGroup;
+import robot.commands.autonomous.OneBallCheesyShotCommandGroup;
 import robot.commands.autonomous.OneBallCommandGroup;
-import robot.commands.autonomous.OneBallDriveShotCommandGroup;
-import robot.commands.autonomous.TwoBallCommandGroup;
+import robot.commands.autonomous.TwoBallDragCheesyShotCommandGroup;
 import robot.commands.autonomous.TwoBallDragCommandGroup;
-import robot.commands.autonomous.TwoBallDragDriveShotCommandGroup;
-import robot.commands.autonomous.TwoBallDragDriveShotExtraDistanceCommandGroup;
 
 public class RobotServer extends Thread {
 
@@ -96,24 +97,27 @@ public class RobotServer extends Thread {
             if (input.equals("OneBall")) {
                 System.out.println("Selecting: " + input);
                 currentAutonomousCommand = new OneBallCommandGroup();
-            } else if (input.equals("OneBallDriveShot")) {
+            } else if (input.equals("OneBallCheesyShot")) {
                 System.out.println("Selecting: " + input);
-                currentAutonomousCommand = new OneBallDriveShotCommandGroup();
+                currentAutonomousCommand = new OneBallCheesyShotCommandGroup();
             } else if (input.equals("LowGoal")) {
                 System.out.println("Selecting: " + input);
                 currentAutonomousCommand = new LowGoalCommandGroup();
-            } else if (input.equals("TwoBall")) {
-                System.out.println("Selecting: " + input);
-                currentAutonomousCommand = new TwoBallCommandGroup();
             } else if (input.equals("TwoBallDrag")) {
                 System.out.println("Selecting: " + input);
                 currentAutonomousCommand = new TwoBallDragCommandGroup();
-            } else if (input.equals("TwoBallDragDriveShot")) {
+            } else if (input.equals("TwoBallDragCheesyShot")) {
                 System.out.println("Selecting: " + input);
-                currentAutonomousCommand = new TwoBallDragDriveShotCommandGroup();
-            } else if (input.equals("TwoBallDragDriveShotExtraDistance")) {
+                currentAutonomousCommand = new TwoBallDragCheesyShotCommandGroup();
+            } else if (input.equals("NoAuto")) {
                 System.out.println("Selecting: " + input);
-                currentAutonomousCommand = new TwoBallDragDriveShotExtraDistanceCommandGroup();
+                currentAutonomousCommand = new NoAutoCommandGroup();
+            } else if (input.equals("Mobility")) {
+                System.out.println("Selecting: " + input);
+                currentAutonomousCommand = new MobilityCommandGroup();
+            } else if (input.equals("MobilityDelayed")) {
+                System.out.println("Selecting: " + input);
+                currentAutonomousCommand = new MobilityDelayedCommandGroup();
             } else {
                 System.out.println("Unknown input: " + input);
             }

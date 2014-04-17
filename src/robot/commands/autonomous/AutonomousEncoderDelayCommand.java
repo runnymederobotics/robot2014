@@ -1,5 +1,6 @@
 package robot.commands.autonomous;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import robot.Constants;
 import robot.commands.CommandBase;
 
@@ -19,7 +20,7 @@ public class AutonomousEncoderDelayCommand extends CommandBase {
     }
 
     protected boolean isFinished() {
-        return Math.abs(chassisSubsystem.getEncoderCounts()) >= Math.abs(encoderCounts);
+        return Math.abs(chassisSubsystem.getEncoderCounts()) >= Math.abs(encoderCounts) || !DriverStation.getInstance().isAutonomous();
     }
 
     protected void end() {
